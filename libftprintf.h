@@ -6,7 +6,7 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 17:28:56 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/12 17:53:16 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:24:48 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include "./libft/libft.h"
+
+char	*change_base(long nbr, char *base);
 
 #endif
