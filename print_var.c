@@ -6,7 +6,7 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:59:36 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/14 17:39:04 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/14 19:25:27 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	print_uint(unsigned int u)
 
 	s = ft_itoa_u(u);
 	write(1, s, ft_strlen(s));
+	free(s);
 	return (ft_strlen(s) - 1);
 }
 

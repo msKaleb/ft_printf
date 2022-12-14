@@ -6,46 +6,43 @@
 #    By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 17:56:18 by msoria-j          #+#    #+#              #
-#    Updated: 2022/12/14 16:16:01 by msoria-j         ###   ########.fr        #
+#    Updated: 2022/12/14 19:26:23 by msoria-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = 			gcc
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = 		-Wall -Werror -Wextra
 
-NAME = ft_printf.a
+NAME =			libftprintf.a
 
-EXE = test
+SUBDIRS = 		libft
 
-SUBDIRS = libft
-SUBOBJS = $(wildcard /libft/*.o)
-SRCS = $(wildcard libft/*.c) $(wildcard *.c)
-#SRCS = $(wildcard *.c)
+SRCS = 			ft_printf.c \
+				change_base.c \
+				print_var.c \
+				ft_itoa_u.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS = 			$(SRCS:.c=.o)
 
 
-$(NAME):	$(OBJS)
-			make -C libft
-#			ar rcs $(NAME) $(OBJS)
-#			$(CC) -o $(EXE) $(SUBOBJS) $(OBJS)
-	$(CC) -o $(NAME) $(FLAGS) $(SRCS)
-
+$(NAME):		$(OBJS)
+				@make -C $(SUBDIRS)
+				cp $(SUBDIRS)/libft.a .
+				mv libft.a $(NAME)
+				ar rcs $(NAME) $(OBJS)
 
 all:			$(NAME)
 
-.SILENT:		clean fclean
-
 clean:
 				@echo Cleaning .o files
-				make -C libft clean
-				$(RM) $(OBJS)
+				make clean -C $(SUBDIRS)
+				@$(RM) $(OBJS)
 
 fclean:			clean
 				@echo Cleaning .a files
-				$(RM) $(NAME)
+				@$(RM) $(NAME)
 
 re:				fclean $(NAME)
 
-.PHONY:			all clean fclean re libft
+.PHONY:			all clean fclean re $(SUBDIRS)
