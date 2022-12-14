@@ -6,7 +6,7 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:20:31 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/13 17:21:26 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:37:15 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char	*change_base(long nbr, char arg)
 	if (arg == 'X')
 		base = "0123456789ABCDEF";
 	if (nbr < 0)
-		write (1, "-", 1);
-	if (nbr < 0)
 		nbr *= -1;
 	i = 0;
 	res[0] = '0';
@@ -51,6 +49,5 @@ char	*change_base(long nbr, char arg)
 	rev_str (res, i);
 	if (i == 0)
 		i = 1;
-	//write (1, res, i);
 	return (res);
 }

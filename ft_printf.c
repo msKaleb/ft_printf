@@ -6,22 +6,35 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:32:26 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/13 18:48:15 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:39:19 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libftprintf.h"
-#include<stdio.h>
+
+static int	choose_format(va_list ap, char format)
+{
+	int	ret;
+
+	ret = 0;
+	if (format == '%')
+		write (1, "%%", 1);
+	if (format == 'd' || format == 'i' || format == 'c')
+		ret += print_int(va_arg(ap, int), format);
+	if (format == 's')
+		ret += print_str(va_arg(ap, char *));
+	if (format == 'p' || format == 'x' || format == 'X')
+		ret += print_hex(va_arg(ap, long), format);
+	if (format == 'u')
+		ret += print_uint(va_arg(ap, unsigned int));
+	return (ret);
+}
+
 int	ft_printf(char const *format, ...)
 {
-	unsigned int	u;
 	va_list			ap;
-	char			c;
-	char			*s;
-	int				d;
-	long			p;
 	int				ret;
-	
+
 	ret = 0;
 	va_start(ap, format);
 	while (*format)
@@ -31,51 +44,16 @@ int	ft_printf(char const *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == '%')
-				write (1, "%%", 1);
-			if (*format == 'c')
-			{
-				c = va_arg(ap, int);
-				write (1, &c, 1);
-			}
-			if (*format == 'd' || *format == 'i')
-			{
-				d = va_arg(ap, int);
-				s = ft_itoa(d);
-				write(1, s, ft_strlen(s));
-				ret += ft_strlen(s) - 1;
-			}
-			if (*format == 's')
-			{
-				s = va_arg(ap, char *);
-				write(1, s, ft_strlen(s));
-				ret += ft_strlen(s) - 1;
-			}
-			if (*format == 'p' || *format == 'x' || *format == 'X')
-			{
-				p = va_arg(ap, long);
-				s = change_base(p, *format);
-				if (*format == 'p')
-					write(1, "0x", 2);
-				write(1, s, ft_strlen(s) + 1);
-				ret += ft_strlen(s);
-			}
-			if (*format == 'u')
-			{
-				u = va_arg(ap, unsigned int);
-				s = ft_itoa_u(u);
-				write(1, s, ft_strlen(s));
-				ret += ft_strlen(s) - 1;
-			}			
+			ret += choose_format(ap, *format);
 		}
-		ret += 1;
 		format++;
+		ret++;
 	}
 	va_end(ap);
 	return (ret);
 }
-								/*retorno mal*/
-/**/
+
+/*
 #include<stdio.h>
 
 int	main(void)
@@ -89,8 +67,13 @@ int	main(void)
 	c = 'z';
 	d = -12;
 	u = 69548;
-	pret = printf("   printf: %c | %i | %x | %X | %s | %p | %%%%\n", c, d, u, u, s, &c);
-	printf("res: %d\n", pret);
-	pret = ft_printf("ft_printf: %c | %i | %x | %X | %s | %p | %%%%\n", c, d, u, u, s, &c);
-	ft_printf("res: %d\n", pret);
+	pret = printf("   printf: %c | %i | %x | %X | %s | %p", c, d, u, u, s, &c);
+	//pret = printf("Porque putnbr() y putstr()\t no son suficientes");
+	//pret = printf("   printf: %X %%%%", u);
+	printf("\tres: %d\n", pret);
+	pret = ft_printf("ft_printf: %c | %i | %x | %X | %s | %p", c, d, u, u, s, &c);
+	//pret = ft_printf("Porque putnbr() y putstr()\t no son suficientes");
+	//pret = ft_printf("ft_printf: %X %%%%", u);
+	ft_printf("\tres: %d\n", pret);
 }
+*/
