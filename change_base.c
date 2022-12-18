@@ -6,11 +6,11 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:20:31 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/14 18:18:27 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/18 16:50:21 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libftprintf.h"
+#include"ft_printf.h"
 
 void	rev_str(char *str, int len)
 {
@@ -27,27 +27,43 @@ void	rev_str(char *str, int len)
 	}
 }
 
-char	*change_base(long nbr, char arg)
+static int	count_digits(unsigned long long nbr)
 {
-	static char	res[1];
-	char		*base;
-	int			i;
+	int	digits;
 
-	base = "0123456789abcdef";
-	if (arg == 'X')
-		base = "0123456789ABCDEF";
-	if (nbr < 0)
-		nbr *= -1;
-	i = 0;
-	res[0] = '0';
-	while (nbr > 0)
+	digits = 1;
+	while (nbr / 16 > 0)
 	{
-		res[i] = base[nbr % 16];
 		nbr /= 16;
-		i++;
+		digits++;
 	}
-	rev_str (res, i);
-	if (i == 0)
-		i = 1;
+	return (digits);
+}
+
+char	*change_base(unsigned long long nbr, char arg)
+{
+	char	*res;
+	char	*base;
+	int		i;
+
+	res = ft_calloc(1, 20);
+	if (nbr == 0)
+		res[0] = '0';
+	else
+	{
+		base = "0123456789abcdef";
+		if (arg == 'X')
+			base = "0123456789ABCDEF";
+		if (nbr < 0)
+			nbr *= -1;
+		i = 0;
+		while (nbr > 0)
+		{
+			res[i] = base[nbr % 16];
+			nbr /= 16;
+			i++;
+		}
+		rev_str (res, i);
+	}
 	return (res);
 }

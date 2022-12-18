@@ -6,7 +6,7 @@
 #    By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 17:56:18 by msoria-j          #+#    #+#              #
-#    Updated: 2022/12/14 19:26:23 by msoria-j         ###   ########.fr        #
+#    Updated: 2022/12/18 19:35:10 by msoria-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ clean:
 
 fclean:			clean
 				@echo Cleaning .a files
+				make fclean -C $(SUBDIRS)
 				@$(RM) $(NAME)
 
 re:				fclean $(NAME)

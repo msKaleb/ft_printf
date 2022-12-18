@@ -6,11 +6,26 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:32:26 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/14 17:39:19 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:28:56 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libftprintf.h"
+#include"ft_printf.h"
+#include<stdio.h>
+
+static int	print_adr(unsigned long long p)
+{
+	char	*s;
+	int		ret;
+
+	if (p < 0)
+		p = p * -1;
+	s = change_base(p, 'p');
+	write(1, "0x", 2);
+	ret = write(1, s, ft_strlen(s)) + 1;
+	free(s);
+	return (ret);
+}
 
 static int	choose_format(va_list ap, char format)
 {
@@ -23,8 +38,10 @@ static int	choose_format(va_list ap, char format)
 		ret += print_int(va_arg(ap, int), format);
 	if (format == 's')
 		ret += print_str(va_arg(ap, char *));
-	if (format == 'p' || format == 'x' || format == 'X')
-		ret += print_hex(va_arg(ap, long), format);
+	if (format == 'x' || format == 'X')
+		ret += print_hex(va_arg(ap, unsigned int), format);
+	if (format == 'p')
+		ret += print_adr(va_arg(ap, unsigned long long));
 	if (format == 'u')
 		ret += print_uint(va_arg(ap, unsigned int));
 	return (ret);
@@ -40,7 +57,9 @@ int	ft_printf(char const *format, ...)
 	while (*format)
 	{
 		if (*format != '%')
+		{
 			write (1, format, 1);
+		}
 		if (*format == '%')
 		{
 			format++;

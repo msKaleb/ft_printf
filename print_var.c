@@ -6,11 +6,11 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:59:36 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/14 19:25:27 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/18 19:33:32 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libftprintf.h"
+#include"ft_printf.h"
 
 int	print_char(char c)
 {
@@ -20,40 +20,40 @@ int	print_char(char c)
 
 int	print_str(char *s)
 {
-	write(1, s, ft_strlen(s));
-	return (ft_strlen(s) - 1);
+	if (!s)
+		return (write(1, "(null)", 6) - 1);
+	return (write(1, s, ft_strlen(s)) - 1);
 }
 
-int	print_hex(long p, char format)
+int	print_hex(unsigned int p, char format)
 {
 	char	*s;
 	int		ret;
 
 	ret = 0;
-	s = change_base(p, format);
-	if (format == 'p')
-	{
-		write(1, "0x", 2);
-		ret += 2;
-	}
-	write(1, s, ft_strlen(s));
-	ret += ft_strlen(s) - 1;
-	return (ret);
+	if (p == 0)
+		return (write(1, "0", 1) - 1);
+	s = change_base((unsigned long long)p, format);
+	ret = write(1, s, ft_strlen(s));
+	free(s);
+	return (ret - 1);
 }
 
 int	print_uint(unsigned int u)
 {
 	char	*s;
+	int		ret;
 
 	s = ft_itoa_u(u);
-	write(1, s, ft_strlen(s));
+	ret = write(1, s, ft_strlen(s));
 	free(s);
-	return (ft_strlen(s) - 1);
+	return (ret - 1);
 }
 
 int	print_int(int d, char arg)
 {
 	char	*s;
+	int		ret;
 
 	if (arg == 'c')
 	{
@@ -61,6 +61,7 @@ int	print_int(int d, char arg)
 		return (0);
 	}
 	s = ft_itoa(d);
-	write(1, s, ft_strlen(s));
-	return (ft_strlen(s) - 1);
+	ret = write(1, s, ft_strlen(s));
+	free(s);
+	return (ret - 1);
 }

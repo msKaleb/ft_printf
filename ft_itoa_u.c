@@ -6,11 +6,11 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 20:54:27 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/14 19:25:13 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:34:47 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libftprintf.h"
+#include"ft_printf.h"
 
 static int	count_digits(long n)
 {
