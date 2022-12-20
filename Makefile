@@ -6,13 +6,13 @@
 #    By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 17:56:18 by msoria-j          #+#    #+#              #
-#    Updated: 2022/12/18 19:35:10 by msoria-j         ###   ########.fr        #
+#    Updated: 2022/12/19 15:24:46 by msoria-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = 			gcc
 
-FLAGS = 		-Wall -Werror -Wextra
+CFLAGS = 		-Wall -Werror -Wextra
 
 NAME =			libftprintf.a
 
@@ -28,20 +28,19 @@ OBJS = 			$(SRCS:.c=.o)
 
 $(NAME):		$(OBJS)
 				@make -C $(SUBDIRS)
-				cp $(SUBDIRS)/libft.a .
-				mv libft.a $(NAME)
-				ar rcs $(NAME) $(OBJS)
+				@mv $(SUBDIRS)/libft.a $(NAME)
+				@ar rcs $(NAME) $(OBJS)
 
 all:			$(NAME)
 
 clean:
 				@echo Cleaning .o files
-				make clean -C $(SUBDIRS)
+				@make clean -C $(SUBDIRS)
 				@$(RM) $(OBJS)
 
 fclean:			clean
 				@echo Cleaning .a files
-				make fclean -C $(SUBDIRS)
+				@make fclean -C $(SUBDIRS)
 				@$(RM) $(NAME)
 
 re:				fclean $(NAME)

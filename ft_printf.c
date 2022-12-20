@@ -6,7 +6,7 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:32:26 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/18 19:28:56 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:59:08 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ int	ft_printf(char const *format, ...)
 	while (*format)
 	{
 		if (*format != '%')
-		{
-			write (1, format, 1);
-		}
+			write (1, (unsigned char *)format, 1);
 		if (*format == '%')
 		{
 			format++;

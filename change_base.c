@@ -6,7 +6,7 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:20:31 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/18 16:50:21 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/19 15:14:21 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,6 @@ void	rev_str(char *str, int len)
 		str[(len - 1) - i] = aux;
 		i++;
 	}
-}
-
-static int	count_digits(unsigned long long nbr)
-{
-	int	digits;
-
-	digits = 1;
-	while (nbr / 16 > 0)
-	{
-		nbr /= 16;
-		digits++;
-	}
-	return (digits);
 }
 
 char	*change_base(unsigned long long nbr, char arg)
