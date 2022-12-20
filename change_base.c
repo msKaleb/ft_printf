@@ -6,13 +6,13 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:20:31 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/19 15:14:21 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/20 13:09:08 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-void	rev_str(char *str, int len)
+static void	rev_str(char *str, int len)
 {
 	int		i;
 	char	aux;

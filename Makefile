@@ -6,7 +6,7 @@
 #    By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 17:56:18 by msoria-j          #+#    #+#              #
-#    Updated: 2022/12/19 15:24:46 by msoria-j         ###   ########.fr        #
+#    Updated: 2022/12/20 13:04:16 by msoria-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,6 @@ fclean:			clean
 				@make fclean -C $(SUBDIRS)
 				@$(RM) $(NAME)
 
-re:				fclean $(NAME)
+re:				@fclean $(NAME)
 
-.PHONY:			all clean fclean re $(SUBDIRS)
+.PHONY:			all clean fclean re

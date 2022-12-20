@@ -6,12 +6,11 @@
 /*   By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 16:32:26 by msoria-j          #+#    #+#             */
-/*   Updated: 2022/12/19 14:59:08 by msoria-j         ###   ########.fr       */
+/*   Updated: 2022/12/20 13:11:15 by msoria-j         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
-#include<stdio.h>
 
 static int	print_adr(unsigned long long p)
 {
