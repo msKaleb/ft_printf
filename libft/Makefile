@@ -6,7 +6,7 @@
 #    By: msoria-j <msoria-j@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 17:34:47 by msoria-j          #+#    #+#              #
-#    Updated: 2022/12/20 13:05:03 by msoria-j         ###   ########.fr        #
+#    Updated: 2023/01/07 17:09:36 by msoria-j         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,10 +70,10 @@ $(NAME):			$(OBJS)
 					@ar rcs $(NAME) $(OBJS)
 
 clean:
-					$(RM) $(OBJS) $(BONUS_OBJS)
+					@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:				clean
-					$(RM) $(NAME)
+					@$(RM) $(NAME)
 
 re:					fclean $(NAME)
 
